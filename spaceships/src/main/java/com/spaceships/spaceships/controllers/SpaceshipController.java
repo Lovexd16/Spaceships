@@ -2,6 +2,7 @@ package com.spaceships.spaceships.controllers;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,5 +45,11 @@ public class SpaceshipController {
     @PatchMapping("/spaceship/{id}")
     public Spaceship editSpaceship(@PathVariable String id, @RequestBody Spaceship spaceship) {
         return spaceshipService.editSpaceship(id, spaceship);
+    }
+
+    @DeleteMapping("/spaceship/{id}")
+    public String deleteSpaceship(@PathVariable String id) {
+        spaceshipService.deleteSpaceship(id);
+        return "{'message': 'Spaceship with id " + id + " has been deleted.'}";
     }
 }
