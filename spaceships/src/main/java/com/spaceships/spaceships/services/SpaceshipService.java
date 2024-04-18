@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
 import com.spaceships.spaceships.models.Spaceship;
@@ -32,4 +33,20 @@ public class SpaceshipService {
 
         return mongoOperations.findOne(query, Spaceship.class);
     }
+
+    // @SuppressWarnings("null")
+    // public Spaceship editSpaceship(String id, Spaceship spaceship) {
+    // Query query = Query.query(Criteria.where("id").is(id));
+    // Update update = Update.update("captain", spaceship.getCaptain());
+
+    // mongoOperations.updateFirst(query, update, Spaceship.class);
+    // return mongoOperations.findById(id, Spaceship.class);
+    // }
+
+    public Spaceship editSpaceship(String id, Spaceship spaceship) {
+        spaceship.setId(id);
+        return mongoOperations.save(spaceship);
+
+    }
+
 }
