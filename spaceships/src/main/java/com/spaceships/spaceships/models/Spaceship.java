@@ -2,6 +2,7 @@ package com.spaceships.spaceships.models;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
 @Document(collection = "Spaceships")
 public class Spaceship {
@@ -11,9 +12,11 @@ public class Spaceship {
     private String captain;
     private int crew;
     private int size;
-    private String world;
 
-    public Spaceship(String id, String spaceshipName, String captain, int crew, int size, String world) {
+    @DocumentReference
+    private World world;
+
+    public Spaceship(String id, String spaceshipName, String captain, int crew, int size, World world) {
         this.id = id;
         this.spaceshipName = spaceshipName;
         this.captain = captain;
@@ -62,11 +65,11 @@ public class Spaceship {
         this.size = size;
     }
 
-    public String getWorld() {
+    public World getWorld() {
         return world;
     }
 
-    public void setWorld(String world) {
+    public void setWorld(World world) {
         this.world = world;
     }
 
